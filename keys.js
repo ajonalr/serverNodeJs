@@ -4,7 +4,7 @@ module.exports = {
 
     databaseMongo: {
 
-        uri: 'mongodb://localhost:27017/nombreDB'
+        uri: 'mongodb://localhost:27017/hospital'
 
     }, 
 

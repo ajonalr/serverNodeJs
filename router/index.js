@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router(); 
-
+const { Usuario } = require('../controller');
 
 module.exports = (app) => {
 
 
-    // home
+    //=================================
+    //    Usario Routes 
+    //=================================
+    router.get('/user/all', Usuario.index ); 
+    router.post('/user', Usuario.store )
 
-    router.get('/', (req, res) => {
-        res.send({ message: 'Hola mundo' }); 
-    });
 
 
 
