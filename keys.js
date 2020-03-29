@@ -8,6 +8,6 @@ module.exports = {
 
     }, 
 
-    secret_Token: 'misecretToken'
+    secret_Token: 'Token1De2Proyecto3_NodeJs'
 
 }

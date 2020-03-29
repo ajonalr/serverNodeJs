@@ -14,6 +14,8 @@ const usuarioSchema = new Schema({
     password: { type: String, required: true }, 
     img: { type: String, required: false },
     role: { type: String, required: true,  default: 'USER_ROLE', enum: roles_validos }
+}, {
+    timestamps: true
 });
 
 usuarioSchema.plugin(uniquevalidator, { message: '{PATH} debe de ser unico' })
