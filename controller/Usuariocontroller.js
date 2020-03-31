@@ -5,15 +5,36 @@ const bcrypt = require('bcryptjs');
 control.index = async (req, res) => {
 
     try {
+
+        // console.log(req.userToken);
+        // en la uer debe de venir el parametro desde 
+        var desde = req.query.desde || 0,
+            desde = Number(desde);
+
+
+
         await Usuario.find({}, 'nombre email img role')
+            .skip(desde)
+            .limit(5)
             .exec(
-                (err, usuarios) => {
+                async (err, usuario) => {
                     if (err) return res.status(500).send({ ok: false, message: 'Error al cargar DB', err });
-                    if (!usuarios) return res.status(500).send({ ok: false, message: 'No existen usuarios' });
+                    if (!usuario) return res.status(500).send({ ok: false, message: 'No existen usuarios' });
+
+
+                    let total = 0;
+
+                    await Usuario.estimatedDocumentCount({}, (err, count) => {
+                        total = count
+                    })
+
                     res.status(200).send({
                         ok: true,
-                        usuarios
+                        usuario,
+                        total
                     });
+
+
                 }
             );
     } catch (e) {
@@ -69,6 +90,7 @@ control.update = async (req, res) => {
             user.nombre = nombre
             user.email = email
             user.role = role
+            user.img = img
 
 
             user.save((err, usersave) => {
@@ -79,7 +101,7 @@ control.update = async (req, res) => {
 
                 res.status(200).send({
                     ok: true,
-                    message: 'Usuario Actuzalizado con exito', 
+                    message: 'Usuario Actuzalizado con exito',
                     usersave
                 });
             });

@@ -6,7 +6,6 @@ const { secret_Token } = require('../keys');
 const service = {}
 service.createToken = (user) => {
 
-
     //=================================
     //    creamos el token recibiendo el id del usuario
     //    sub: id, iat: feca de creacion, exp: creacion del token
@@ -16,7 +15,6 @@ service.createToken = (user) => {
         iat: moment().unix(),
         exp: moment().add(5, 'hour').unix()
     }
-
     return jwt.encode(payload, secret_Token);
 
 }

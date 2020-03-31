@@ -17,10 +17,20 @@ auth.isauth = (req, res, next) => {
         res.status(401).send({ message: 'El Token A expirado' });
     }
 
-    req.user = payload.usb; 
+    req.userToken = payload.sub;
 
-    next(); 
+    next();
 
 }
+
+
+auth.verifiToken = (req, res, next) => {
+   next();
+}
+
+
+
+
+
 
 module.exports = auth;

@@ -1,7 +1,7 @@
 const control = {};
 const Usuario = require('../models/usuario');
 const bcrypt = require('bcryptjs');
-const tokenService = require('../services/auth');
+const tokenService = require('../services/auth.service');
 
 control.login = async (req, res) => {
 
@@ -9,26 +9,21 @@ control.login = async (req, res) => {
 
 
     Usuario.findOne({ email: email }, (err, user) => {
-
-
+        
         if (err) return res.status(500).send({ ok: false, message: 'Algo salio mal en la consulta', err });
-
+        
         if (!user) return res.status(400).send({ ok: false, message: 'El Credenciales Incorrectas *email', err });
-
+        
         if(!bcrypt.compareSync(password, user.password)) return res.status(400).send({ ok: false, message: 'El Credenciales Incorrectas *pass ' });
-
-        user.password = '';        
+        user.password = '';   
 
         return res.status(200).send({
             ok: true,
             user, 
             toke: tokenService.createToken(user)
-
         }); 
 
-
     });
-
 
 }
 

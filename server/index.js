@@ -3,6 +3,11 @@ const bodyparser = require('body-parser');
 const routes = require('../router');
 const cors = require('cors');
 const { port } = require('../keys');
+const fileUpload = require('express-fileupload');
+
+
+
+
 
 module.exports = (app) => {
 
@@ -19,17 +24,20 @@ module.exports = (app) => {
 
     app.use(morgar('dev'));
 
-    app.use(bodyparser.urlencoded({ extended: false })); 
+    app.use(bodyparser.urlencoded({ extended: false }));
 
-    app.use(bodyparser.json()); 
+    app.use(bodyparser.json());
+
+    //para la subida de archivos
+    app.use(fileUpload())
 
 
 
     //rutas para poder acceder a las peticiones
-    routes(app); 
+    routes(app);
 
 
     // retornamos app
-    return app; 
+    return app;
 
 }
