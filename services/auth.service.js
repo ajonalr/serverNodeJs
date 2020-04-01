@@ -16,7 +16,7 @@ service.createToken = (user) => {
         exp: moment().add(5, 'hour').unix()
     }
     return jwt.encode(payload, secret_Token);
-
+ 
 }
 
 module.exports = service; 
