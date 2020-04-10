@@ -19,8 +19,9 @@ control.login = async (req, res) => {
 
         return res.status(200).send({
             ok: true,
+            id: user._id,
             user, 
-            toke: tokenService.createToken(user)
+            token: tokenService.createToken(user)
         }); 
 
     });

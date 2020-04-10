@@ -1,7 +1,7 @@
 const jwt = require('jwt-simple');
 const Usuario = require('../models/usuario');
 const moment = require('moment');
-const { secret_Token } = require('../keys');
+const { secret_Token, hourToken } = require('../keys');
 
 const service = {}
 service.createToken = (user) => {
@@ -13,7 +13,7 @@ service.createToken = (user) => {
     const payload = {
         sub: user._id,
         iat: moment().unix(),
-        exp: moment().add(5, 'hour').unix()
+        exp: moment().add(hourToken, 'hour').unix()
     }
     return jwt.encode(payload, secret_Token);
  

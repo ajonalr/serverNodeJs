@@ -6,6 +6,6 @@ const app = server(express());
 require('./databse');
 
 // servidor - iniciamos el servidor
-app.listen(app.get('port'), () => console.log('serven on port ' + app.get('port')));
+app.listen(process.env.PORT || app.get('port'), () => console.log('serven on port ' + app.get('port')));
 
 
