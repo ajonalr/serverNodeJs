@@ -14,4 +14,4 @@ mongoose.connect(
 )
 
     .then(db => console.log('DB is conect'))
-    .catch(err => console.error(err))
+    .catch(err => console.log(err));

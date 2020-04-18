@@ -17,7 +17,7 @@ module.exports = (app) => {
     //=================================
     //    Usario Routes 
     //=================================
-    router.get('/user/all', Auth.isauth, Usuario.index);
+    router.get('/user/all', Usuario.index);
     router.post('/user', Usuario.store);
     router.put('/user/:id', Auth.isauth, Usuario.update);
     router.delete('/user/:id', Auth.isauth, Usuario.destroy);
@@ -34,7 +34,7 @@ module.exports = (app) => {
     //    Hospitales Rutas 
     //=================================
     const hos = '/hospital';
-    router.get(hos, Auth.isauth, Hospital.index);
+    router.get(hos, Hospital.index);
     router.post(hos, Auth.isauth, Hospital.store);
     router.put(hos + '/:id', Auth.isauth, Hospital.update);
     router.delete(hos + '/:id', Auth.isauth, Hospital.remove);
@@ -44,7 +44,7 @@ module.exports = (app) => {
     //=================================
 
     const med = '/medico'
-    router.get(med, Auth.isauth, Medico.index);
+    router.get(med, Medico.index);
     router.post(med, Auth.isauth, Medico.store);
     router.put(med + '/:id', Auth.isauth, Medico.update);
     router.delete(med + '/:id', Auth.isauth, Medico.remove);
@@ -53,8 +53,8 @@ module.exports = (app) => {
     //    Busqueda Global 
     //=================================
     const bs = '/busqueda'
-    router.get(bs + '/todo/:busqueda', Auth.isauth, Busqueda.index);
-    router.get(bs + '/:coleccion/:busqueda', Auth.isauth, Busqueda.espesifica);
+    router.get(bs + '/todo/:busqueda', Busqueda.index);
+    router.get(bs + '/:coleccion/:busqueda', Busqueda.espesifica);
 
 
     //=================================
@@ -62,7 +62,7 @@ module.exports = (app) => {
     //=================================
 
     const up = '/upload'
-    router.put(up + '/:tipo/:id', Auth.isauth, Upload.index);
+    router.put(up + '/:tipo/:id', Upload.index);
 
     //=================================
     //
@@ -70,7 +70,7 @@ module.exports = (app) => {
     //
     //=================================
 
-    router.get('/getImage/:tipo/:img', Auth.isauth, Imagen.getImage)
+    router.get('/getImage/:tipo/:img', Imagen.getImage)
 
     //=================================
     //

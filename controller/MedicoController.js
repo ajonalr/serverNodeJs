@@ -16,7 +16,7 @@ control.index = async (req, res) => {
             if (!medico) return res.status(500).send({ ok: false, message: 'No existen Medicos' });
 
 
-            let total = 0; 
+            var total = 0; 
 
             await Medico.estimatedDocumentCount({}, (err, count) => total = count )
 

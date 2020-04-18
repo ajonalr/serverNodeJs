@@ -22,7 +22,7 @@ control.index = async (req, res) => {
                     if (!usuario) return res.status(500).send({ ok: false, message: 'No existen usuarios' });
 
 
-                    let total = 0;
+                    var total = 0;
 
                     await Usuario.estimatedDocumentCount({}, (err, count) => {
                         total = count
@@ -102,7 +102,7 @@ control.update = async (req, res) => {
                 res.status(200).send({
                     ok: true,
                     message: 'Usuario Actuzalizado con exito',
-                    usersave
+                    user: usersave
                 });
             });
         });

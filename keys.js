@@ -4,7 +4,7 @@ module.exports = {
 
     databaseMongo: {
 
-        uri: 'mongodb+srv://root:taylor110eaa@nestprueba-2nlvk.gcp.mongodb.net/nestPrubaJWT?retryWrites=true&w=majority'
+        uri: 'mongodb://localhost/hospital'
 
     }, 
 

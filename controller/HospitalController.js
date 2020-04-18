@@ -12,7 +12,7 @@ control.index = async (req, res) => {
             if (err) return res.status(500).send({ ok: false, message: 'Error al cargar DB', err });
             if (!hospital) return res.status(500).send({ ok: false, message: 'No existen hospitales' });
            
-            let total= 0;
+            var total= 0;
 
             await Hospital.estimatedDocumentCount({}, (err, count) => total = count); 
            
