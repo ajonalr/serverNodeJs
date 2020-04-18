@@ -7,7 +7,9 @@ const {
     Medico,
     Busqueda,
     Upload,
-    Imagen, Google } = require('../controller');
+    Imagen, 
+    Google, 
+    Ruta } = require('../controller');
 
 const Auth = require('../middleware/auth');
 
@@ -58,7 +60,7 @@ module.exports = (app) => {
 
 
     //=================================
-    //    Uploads 
+    //    Uploads image
     //=================================
 
     const up = '/upload'
@@ -81,6 +83,13 @@ module.exports = (app) => {
     router.post('/login/google', Google.singin)
 
 
+    //=====================================================
+    //=====================================================
+    //   rutas
+    //=====================================================
+    //=====================================================
+
+    router.get('/rutas', Ruta.index )
 
 
 

@@ -7,5 +7,7 @@ module.exports = {
     Busqueda: require('./BusquedaController'),
     Upload: require('./UploadsController'),
     Imagen: require('./ImagenController'),
-    Google: require('./GoogleController')
+    Google: require('./GoogleController'),
+    Ruta: require('./RutasController'),
+    
 }
