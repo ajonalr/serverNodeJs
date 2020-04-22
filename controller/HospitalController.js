@@ -8,23 +8,23 @@ control.index = async (req, res) => {
         var desde = req.query.desde || 0,
             desde = Number(desde);
 
-        await Hospital.find({}, async(err, hospital) => {
+        await Hospital.find({}, async (err, hospital) => {
             if (err) return res.status(500).send({ ok: false, message: 'Error al cargar DB', err });
             if (!hospital) return res.status(500).send({ ok: false, message: 'No existen hospitales' });
-           
-            var total= 0;
 
-            await Hospital.estimatedDocumentCount({}, (err, count) => total = count); 
-           
+            var total = 0;
+
+            await Hospital.estimatedDocumentCount({}, (err, count) => total = count);
+
             res.status(200).send({
                 ok: true,
-                hospital, 
+                hospital,
                 total
             });
         })
-        .skip(desde)
-        .limit(5)
-        .populate('usuario', 'nombre email');
+            .skip(desde)
+            .limit(5)
+            .populate('usuario', 'nombre email');
 
     } catch (error) {
         res.send({ error });
@@ -64,6 +64,28 @@ control.store = async (req, res) => {
     }
 }
 
+control.get = async (req, res) => {
+    try {
+
+        var { id } = req.params.id
+
+        Hospital.findById(id, (err, hospital) => {
+            if (err) return res.status(400).send({ ok: false, message: 'Error al busca en la  DB', err });
+            if (!hospital) return res.status(500).send({ ok: false, message: 'El Hopital No existe' });
+
+            res.status(200).send({
+                ok: true, 
+                hospital
+            })
+
+        });
+
+
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 control.update = async (req, res) => {
     try {
 
@@ -85,7 +107,7 @@ control.update = async (req, res) => {
 
                 res.status(200).send({
                     ok: true,
-                    message: 'Hospital Actuzalizado con exito', 
+                    message: 'Hospital Actuzalizado con exito',
                     hospitalSave
                 });
 
@@ -103,8 +125,8 @@ control.update = async (req, res) => {
 
 control.remove = async (req, res) => {
     try {
-        
-        const id = req.params.id; 
+
+        const id = req.params.id;
 
         await Hospital.findById(id, async (err, hospital) => {
             if (err) return res.status(400).send({ ok: false, message: 'Error al recuper de la  DB', err });
@@ -119,7 +141,7 @@ control.remove = async (req, res) => {
                     hospitalremove
 
                 });
-    
+
             })
 
         })
@@ -128,6 +150,7 @@ control.remove = async (req, res) => {
         res.send({ e })
     }
 }
+
 
 
 module.exports = control; 

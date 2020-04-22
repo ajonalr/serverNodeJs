@@ -18,14 +18,15 @@ rt.index = async(req, res) => {
     var login = {post: '/login'}
 
     var hospital = {
-        get: '/hospital',
+        getAll: '/hospital',
+        get: '/hospital/:id',
         post: '/hospital',
         put: '/hospital/:id',
         delete: '/hospital/:id',
     }
 
     var medico = {
-        get: '/medico',
+        getAll: '/medico',
         post: '/medico',
         put: '/medico/:id',
         delete: '/medico/:id',
@@ -33,7 +34,7 @@ rt.index = async(req, res) => {
 
     var busqueda = {
         get: '/busqueda/todo/:busqueda',
-        get: '/medico/:coleccion/:busqueda',
+        get: '/busqueda/:coleccion/:busqueda',
        
     }
 

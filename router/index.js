@@ -37,6 +37,7 @@ module.exports = (app) => {
     //=================================
     const hos = '/hospital';
     router.get(hos, Hospital.index);
+    router.get(hos +'/:id', Hospital.get);
     router.post(hos, Auth.isauth, Hospital.store);
     router.put(hos + '/:id', Auth.isauth, Hospital.update);
     router.delete(hos + '/:id', Auth.isauth, Hospital.remove);
