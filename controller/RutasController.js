@@ -27,6 +27,7 @@ rt.index = async(req, res) => {
 
     var medico = {
         getAll: '/medico',
+        get: '/medico/:id',
         post: '/medico',
         put: '/medico/:id',
         delete: '/medico/:id',

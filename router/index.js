@@ -48,6 +48,7 @@ module.exports = (app) => {
 
     const med = '/medico'
     router.get(med, Medico.index);
+    router.get(med + '/:id', Medico.get);
     router.post(med, Auth.isauth, Medico.store);
     router.put(med + '/:id', Auth.isauth, Medico.update);
     router.delete(med + '/:id', Auth.isauth, Medico.remove);

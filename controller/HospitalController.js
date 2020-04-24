@@ -67,18 +67,22 @@ control.store = async (req, res) => {
 control.get = async (req, res) => {
     try {
 
-        var { id } = req.params.id
+        var id = req.params.id;
 
-        Hospital.findById(id, (err, hospital) => {
+        await Hospital.findById(id, (err, hospital) => {
+
             if (err) return res.status(400).send({ ok: false, message: 'Error al busca en la  DB', err });
+
             if (!hospital) return res.status(500).send({ ok: false, message: 'El Hopital No existe' });
 
             res.status(200).send({
-                ok: true, 
+                ok: true,
                 hospital
             })
 
-        });
+        })
+        .populate('usuario', 'nombre email')
+        .populate('medico')
 
 
     } catch (e) {

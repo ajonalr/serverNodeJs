@@ -138,5 +138,35 @@ control.remove = async (req, res) => {
 
 }
 
+control.get = async (req, res) => {
+
+    try {
+
+        var  id  = req.params.id;
+
+        console.log(id);
+        
+
+        await Medico.findById( id, (err, medico) => {
+
+
+
+            if (err) return res.status(400).send({ ok: false, message: 'Error al busca en la  DB', err });
+
+            if (!medico) return res.status(500).send({ ok: false, message: 'El Medico No existe' });
+
+            res.status(200).send({
+                ok: true,
+                medico
+            })
+
+        });
+
+    } catch (e) {
+        console.log(e);
+        
+    }
+
+}
 
 module.exports = control;
